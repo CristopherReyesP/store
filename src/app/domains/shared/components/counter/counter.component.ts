@@ -23,6 +23,31 @@ export class CounterComponent {
     console.log('ngOnchanges');
     console.log('_'.repeat(10));
     console.log(changes);
+    const duration = changes['duration'];
+    console.log(duration)
   }
+   ngOnInit(){
+    //despues del render, solo corre una vez, async, then, subs
+    console.log('ngOninit');
+    console.log('_'.repeat(10));
+    console.log('duration =>', this.duration);
+    console.log('message =>', this.message);
+   }
 
+   ngAfterViewInit(){
+    //despues del ngonInit, despues del render, pregunta si los hijos del componente ya fueron renderizados
+    console.log('ngAfterviewInit');
+    console.log('_'.repeat(10));
+
+   }
+
+   ngOnDestroy(){
+    //cuando el componente se destruye
+    console.log('ngOnDestroy');
+    console.log('_'.repeat(10));
+   }
+
+   doSomething(){
+    console.log('change duration')
+   }
 }

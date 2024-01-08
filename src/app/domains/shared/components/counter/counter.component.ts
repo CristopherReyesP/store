@@ -4,7 +4,7 @@ import { CommonModule } from "@angular/common";
 @Component({
   selector: 'app-counter',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ],
   templateUrl: './counter.component.html',
   styleUrl: './counter.component.css'
 })
@@ -19,12 +19,12 @@ export class CounterComponent {
   }
 
   //antes y durante el render, async
-  ngOnchanges(changes: SimpleChanges){
+  ngOnChanges(changes: SimpleChanges){
     console.log('ngOnchanges');
     console.log('_'.repeat(10));
     console.log(changes);
     const duration = changes['duration'];
-    console.log(duration)
+    console.log(duration);
   }
    ngOnInit(){
     //despues del render, solo corre una vez, async, then, subs

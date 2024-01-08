@@ -38,6 +38,29 @@ constructor(){
       creationAt: new Date().toISOString()
 
     },
+    {
+      id: Date.now(),
+      title: "producto 4",
+      price: 300,
+      image: "https://picsum.photos/640/640/?r=25",
+      creationAt: new Date().toISOString()
+
+    },
+    {
+      id: Date.now(),
+      title: "producto 1",
+      price: 100,
+      image: "https://picsum.photos/640/640/?r=23",
+      creationAt: new Date().toISOString()
+    },
+    {
+      id: Date.now(),
+      title: "producto 2",
+      price: 200,
+      image: "https://picsum.photos/640/640/?r=24",
+      creationAt: new Date().toISOString()
+
+    },
   ]
   this.products.set(initProducts);
 }

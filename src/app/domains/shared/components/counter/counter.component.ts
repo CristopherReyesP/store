@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges, signal } from '@angular/core';
 import { CommonModule } from "@angular/common";
 
 @Component({
@@ -11,6 +11,9 @@ import { CommonModule } from "@angular/common";
 export class CounterComponent {
   @Input({required: true}) duration = 0;
   @Input({required: true}) message = '';
+  counter = signal(0);
+  //counterref sirve para guardar la referencia de setinerval y que el setinterval no siga corriendo
+  counterRef : number | undefined;
 
   //se ejecuta primero, no async, antes de render
   constructor(){
@@ -24,7 +27,9 @@ export class CounterComponent {
     console.log('_'.repeat(10));
     console.log(changes);
     const duration = changes['duration'];
-    console.log(duration);
+    if(duration && duration.currentValue != duration.previousValue){
+      this.doSomething();
+    }
   }
    ngOnInit(){
     //despues del render, solo corre una vez, async, then, subs
@@ -32,6 +37,12 @@ export class CounterComponent {
     console.log('_'.repeat(10));
     console.log('duration =>', this.duration);
     console.log('message =>', this.message);
+
+   this.counterRef = window.setInterval(()=>{
+      console.log('run interval')
+      this.counter.update(statePrev => statePrev + 1);
+    }, 1000 )
+
    }
 
    ngAfterViewInit(){
@@ -43,6 +54,7 @@ export class CounterComponent {
 
    ngOnDestroy(){
     //cuando el componente se destruye
+    window.clearInterval(this.counterRef);
     console.log('ngOnDestroy');
     console.log('_'.repeat(10));
    }
